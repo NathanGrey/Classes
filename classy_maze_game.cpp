@@ -1,10 +1,7 @@
 #include <iostream> // Starts the preprocessor command including the contents of iostream
 using namespace std; // This eliminates the need to write std::cout so it can just be cout
 
-
-
-
-class Position
+class Position // Creates a class for positioning
 {
   public:
     int m_row;
@@ -12,6 +9,17 @@ class Position
     int m_counter;
 };
 
+class Movements // Creates a class for the player's movements
+{
+  public:
+    int m_playerMove;
+};
+
+class EndOfGame // Creates a class for determining the end of the game
+{
+  public:
+    bool m_gameOver;
+};
 // Function for printing the main menu
 void printMenu()
 {
@@ -93,8 +101,6 @@ char maze[][42] = {
 { "| |         |     |   |     |   |   |  X|" },
 { "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+" },
 };
-	
-
 
 	// Defines Variable type of Position
 	Position start; 
@@ -106,22 +112,26 @@ char maze[][42] = {
 	// Keeps track of the number of steps it takes to get to the goal
 	start.m_counter = 0;
 
+	// Defines Variable type of EndOfGame
+	EndOfGame track;
+
 	// Boolean statement showing that the game is running the loop until the player quits or reaches the goal
-	bool GameOver = false;
-	while(!GameOver)
+	track.m_gameOver = false;
+	while(!track.m_gameOver)
 	{
 		print(maze); // Calls back to the function and prints the maze map
+		Movements begin; // Defines Variable type of Movement
 
-		char PlayerMove = ' '; // Moves the player by one space
+		begin.m_playerMove = ' '; // Moves the player by one space
 		cout << "\nMove: "; // Promts the player to move
 
 		// While statment to continue to prompt player to move until the goal is reached
-		while(PlayerMove != 'u' && PlayerMove != 'd' && PlayerMove != 'l' && PlayerMove != 'r' && PlayerMove != 'q')
+		while(begin.m_playerMove != 'u' && begin.m_playerMove != 'd' && begin.m_playerMove != 'l' && begin.m_playerMove != 'r' && begin.m_playerMove != 'q')
 		{
-			cin >> PlayerMove;
+			cin >> begin.m_playerMove;
 		}
 
-		if (PlayerMove == 'u')
+		if (begin.m_playerMove == 'u')
 		{
 			if (maze[start.m_row - 1][start.m_col] == ' ')
 			{
@@ -132,10 +142,10 @@ char maze[][42] = {
 			}
 			else if (maze[start.m_row - 1][start.m_col] == '#')
 			{
-				GameOver = true;
+				track.m_gameOver = true;
 			}
 		}
-		else if (PlayerMove == 'd')
+		else if (begin.m_playerMove == 'd')
 		{
 			if (maze[start.m_row + 1][start.m_col] == ' ')
 			{
@@ -146,10 +156,10 @@ char maze[][42] = {
 			}
 			else if (maze[start.m_row + 1][start.m_col] == '#')
 			{
-				GameOver = true;
+				track.m_gameOver = true;
 			}
 		}
-		else if (PlayerMove == 'l')
+		else if (begin.m_playerMove == 'l')
 		{
 			if (maze[start.m_row][start.m_col - 1] == ' ')
 			{
@@ -160,10 +170,10 @@ char maze[][42] = {
 			}
 			else if (maze[start.m_row][start.m_col - 1] == '#')
 			{
-				GameOver = true;
+				track.m_gameOver = true;
 			}
 		}
-		else if (PlayerMove == 'r')
+		else if (begin.m_playerMove == 'r')
 		{
 			if (maze[start.m_row][start.m_col + 1] == ' ')
 			{
@@ -175,12 +185,12 @@ char maze[][42] = {
 			else if (maze[start.m_row][start.m_col + 1] == '#') // If the player finds the goal then the game ends
 			{
 				cout << "Congratulation! You win! You reached the goal in" << " " << start.m_counter << " " << "steps!";
-				GameOver = true;
+				track.m_gameOver = true;
 			}
 		}
-		else if (PlayerMove == 'q') // Quits the game
+		else if (begin.m_playerMove == 'q') // Quits the game
 		{
-			GameOver = true;
+			track.m_gameOver = true;
 		}
 		else
 		{
