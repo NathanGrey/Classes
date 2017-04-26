@@ -1,196 +1,145 @@
 #include <iostream> // Starts the preprocessor command including the contents of iostream
 using namespace std; // This eliminates the need to write std::cout so it can just be cout
 
-class Position // Creates a class for positioning
+class Menu // This makes a class called Menu
 {
-  public:
-    int m_row;
-    int m_col;
-    int m_counter;
-};
+public: // This allows other functions to access the data inside the Menu class
 
-class Movements // Creates a class for the player's movements
-{
-  public:
-    int m_playerMove;
-};
+	m_StartGame; //Declares member variables of Menu class
+	m_QuitGame;
+	m_ShowMenu;
 
-class EndOfGame // Creates a class for determining the end of the game
-{
-  public:
-    bool m_gameOver;
-};
-// Function for printing the main menu
-void printMenu()
-{
-	cout << "=========================================\n"
-		"\t \tMaze Game \n"
-		"=========================================\n"
-		"Solve in as little steps as possible\n\n\n"
-
-		"Controls\n"
-		"--------------\n\n"
-		"U = Up \n"
-		"D = Down \n"
-		"L = Left \n"
-		"R = Right \n"
-		"Q = Quit Game (Boo Quitter!)\n\n\n";
-}
-
-// Function for showing the Maze Map
-void print(char maze[][42])
-{
-		for (int i = 0; i < 41; ++i)
-	{
-		for (int j = 0; j < 42; ++j)
+		void printMenu()	// Member function for printing the main menu
 		{
-			cout << maze[i][j];
+			cout << "=========================================\n"
+				"\t \tMaze Game \n"
+				"=========================================\n"
+				"Solve in as little steps as possible\n\n\n"
+
+				"Controls\n"
+				"--------------\n\n"
+				"U = Up \n"
+				"D = Down \n"
+				"L = Left \n"
+				"R = Right \n"
+				"Q = Quit Game (Boo Quitter!)\n\n\n";
 		}
-		cout << endl;
-	}
-}
-
-// Function for Player's movement through the maze
-int main()
-{
-
-// Calls bacj to print the main menu
-printMenu();
-
-// 2D Array of Maze map
-char maze[][42] = {
-{ "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+" },
-{ "|@|     |   |   |         |           | |" },
-{ "+ +-+-+ +-+ + + + + +-+-+-+ + + +-+-+ + +" },
-{ "|   |     |   |   |         |   |   | | |" },
-{ "+-+ + + + + +-+-+-+-+-+-+-+-+-+-+-+ + + +" },
-{ "|   | | | | |           |     |       | |" },
-{ "+ +-+ +-+ + + +-+-+-+-+ + +-+ + +-+-+ + +" },
-{ "| |     |   | |     | | | | |   |   |   |" },
-{ "+ + +-+ + +-+ +-+ + + + + + +-+-+ +-+-+-+" },
-{ "|   |   |   |   | |     |             | |" },
-{ "+-+-+ +-+-+-+-+ +-+-+ +-+-+ +-+-+ +-+ + +" },
-{ "|   |   |       |   |     | |   |   | | |" },
-{ "+ + +-+ + +-+-+-+ + +-+ + +-+ + +-+ + + +" },
-{ "| |     |   |     | |   |   | |     | | |" },
-{ "+ +-+-+-+-+ + +-+-+ + +-+-+ + +-+-+-+ + +" },
-{ "|       |   | |   | | |   |   |     |   |" },
-{ "+-+ +-+-+ +-+ + + + +-+ + +-+ +-+-+ +-+ +" },
-{ "|   |   |   |   | | |   |   | |     | | |" },
-{ "+ +-+ + +-+ +-+ + + + +-+-+ + + + +-+ + +" },
-{ "|   | |   |   | | |   |   | | | | | | | |" },
-{ "+-+ +-+ + +-+ +-+ + +-+ +-+ +-+ + + + + +" },
-{ "|   |   |   |   | |   | |       |   |   |" },
-{ "+ +-+ +-+-+-+-+ + + + + + + + +-+-+-+-+-+" },
-{ "| |   | |     | | | | |   | |       |   |" },
-{ "+ + +-+ + +-+ + + + + + +-+ + +-+-+ + +-+" },
-{ "| | |   |   |     | | | |   |     | |   |" },
-{ "+ + + + +-+ +-+-+-+-+ +-+ +-+-+-+-+ +-+ +" },
-{ "| | | |     |   |   | |   |       | |   |" },
-{ "+ + + +-+-+-+ +-+ + + + + + +-+-+ + + +-+" },
-{ "|   |       |     |   | |       |   |   |" },
-{ "+-+ +-+-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+ +" },
-{ "|   |   | |     |         |       |   | |" },
-{ "+ +-+ + + + +-+ +-+ +-+-+ + +-+-+ +-+ + +" },
-{ "| | | |     | |     | |   | |   |   |   |" },
-{ "+ + + +-+-+-+ +-+-+-+ + +-+ +-+ +-+ + + +" },
-{ "|   | |   |     |   |   |     | | |   | |" },
-{ "+ +-+ + +-+ +-+ +-+ +-+-+-+ + + + +-+-+ +" },
-{ "| |   |     |   |   |   |   | | |     | |" },
-{ "+ + +-+ +-+-+ +-+ + + + + +-+ + + +-+ + +" },
-{ "| |         |     |   |     |   |   |  X|" },
-{ "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+" },
 };
 
-	// Defines Variable type of Position
-	Position start; 
+
+class Maze // This makes a class called Maze
+{
+public: // This allows other functions to access the data inside the Maze class
+		char maze [][42];//Declares member variables of Maze class
+	
+
+		void print(char maze[][42]) // Member function for showing the Maze Map
+		{
+				for (int i = 0; i < 41; ++i)
+			{
+				for (int j = 0; j < 42; ++j)
+				{
+					cout << maze[i][j];
+				}
+				cout << endl;
+			}
+		}
+};
+
+
+class Movement // This creates a class called Movement
+{
+
+	public: // This allows other functions to access the data inside the Movement class
+		int row; //Declares member variables of Movement class
+		int col;
+		int counter;
+		char PlayerMove;
+
+};
 
 	// Declares where the player's starting position is 
-	start.m_row = 1; 
-	start.m_col = 1;
+	int row = 1; 
+	int col = 1;
 
 	// Keeps track of the number of steps it takes to get to the goal
-	start.m_counter = 0;
-
-	// Defines Variable type of EndOfGame
-	EndOfGame track;
+	int counter = 0;
 
 	// Boolean statement showing that the game is running the loop until the player quits or reaches the goal
-	track.m_gameOver = false;
-	while(!track.m_gameOver)
+	bool GameOver = false;
+	while(!GameOver)
 	{
 		print(maze); // Calls back to the function and prints the maze map
-		Movements begin; // Defines Variable type of Movement
 
-		begin.m_playerMove = ' '; // Moves the player by one space
+		char PlayerMove = ' '; // Moves the player by one space
 		cout << "\nMove: "; // Promts the player to move
 
 		// While statment to continue to prompt player to move until the goal is reached
-		while(begin.m_playerMove != 'u' && begin.m_playerMove != 'd' && begin.m_playerMove != 'l' && begin.m_playerMove != 'r' && begin.m_playerMove != 'q')
+		while(PlayerMove != 'u' && PlayerMove != 'd' && PlayerMove != 'l' && PlayerMove != 'r' && PlayerMove != 'q')
 		{
-			cin >> begin.m_playerMove;
+			cin >> PlayerMove;
 		}
 
-		if (begin.m_playerMove == 'u')
+		if (PlayerMove == 'u')
 		{
-			if (maze[start.m_row - 1][start.m_col] == ' ')
+			if (maze[row - 1][col] == ' ')
 			{
-				maze[start.m_row][start.m_col] = ' ';
-				start.m_row--;
-				maze[start.m_row][start.m_col] = '@';
-				start.m_counter++;
+				maze[row][col] = ' ';
+				row--;
+				maze[row][col] = '@';
+				counter++;
 			}
-			else if (maze[start.m_row - 1][start.m_col] == '#')
+			else if (maze[row - 1][col] == '#')
 			{
-				track.m_gameOver = true;
+				GameOver = true;
 			}
 		}
-		else if (begin.m_playerMove == 'd')
+		else if (PlayerMove == 'd')
 		{
-			if (maze[start.m_row + 1][start.m_col] == ' ')
+			if (maze[row + 1][col] == ' ')
 			{
-				maze[start.m_row][start.m_col] = ' ';
-				start.m_row++;
-				maze[start.m_row][start.m_col] = '@';
-				start.m_counter++;
+				maze[row][col] = ' ';
+				row++;
+				maze[row][col] = '@';
+				counter++;
 			}
-			else if (maze[start.m_row + 1][start.m_col] == '#')
+			else if (maze[row + 1][col] == '#')
 			{
-				track.m_gameOver = true;
+				GameOver = true;
 			}
 		}
-		else if (begin.m_playerMove == 'l')
+		else if (PlayerMove == 'l')
 		{
-			if (maze[start.m_row][start.m_col - 1] == ' ')
+			if (maze[row][col - 1] == ' ')
 			{
-				maze[start.m_row][start.m_col] = ' ';
-				start.m_col--;
-				maze[start.m_row][start.m_col] = '@';
-				start.m_counter++;
+				maze[row][col] = ' ';
+				col--;
+				maze[row][col] = '@';
+				counter++;
 			}
-			else if (maze[start.m_row][start.m_col - 1] == '#')
+			else if (maze[row][col - 1] == '#')
 			{
-				track.m_gameOver = true;
+				GameOver = true;
 			}
 		}
-		else if (begin.m_playerMove == 'r')
+		else if (PlayerMove == 'r')
 		{
-			if (maze[start.m_row][start.m_col + 1] == ' ')
+			if (maze[row][col + 1] == ' ')
 			{
-				maze[start.m_row][start.m_col] = ' ';
-				start.m_col++;
-				maze[start.m_row][start.m_col] = '@';
-				start.m_counter++;
+				maze[row][col] = ' ';
+				col++;
+				maze[row][col] = '@';
+				counter++;
 			}
-			else if (maze[start.m_row][start.m_col + 1] == '#') // If the player finds the goal then the game ends
+			else if (maze[row][col + 1] == '#') // If the player finds the goal then the game ends
 			{
-				cout << "Congratulation! You win! You reached the goal in" << " " << start.m_counter << " " << "steps!";
-				track.m_gameOver = true;
+				cout << "Congratulation! You win! You reached the goal in" << " " << counter << " " << "steps!";
+				GameOver = true;
 			}
 		}
-		else if (begin.m_playerMove == 'q') // Quits the game
+		else if (PlayerMove == 'q') // Quits the game
 		{
-			track.m_gameOver = true;
+			GameOver = true;
 		}
 		else
 		{
@@ -198,10 +147,191 @@ char maze[][42] = {
 		}
 	}
 
+
+// Function for Player's movement through the maze
+int main()
+{
+
+// Calls back to print the main menu
+printMenu();
+
+
+char maze[][42] = { //Declares member variables of Maze class
+	{ "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+" },
+	{ "|@|     |   |   |         |           | |" },
+	{ "+ +-+-+ +-+ + + + + +-+-+-+ + + +-+-+ + +" },
+	{ "|   |     |   |   |         |   |   | | |" },
+	{ "+-+ + + + + +-+-+-+-+-+-+-+-+-+-+-+ + + +" },
+	{ "|   | | | | |           |     |       | |" },
+	{ "+ +-+ +-+ + + +-+-+-+-+ + +-+ + +-+-+ + +" },
+	{ "| |     |   | |     | | | | |   |   |   |" },
+	{ "+ + +-+ + +-+ +-+ + + + + + +-+-+ +-+-+-+" },
+	{ "|   |   |   |   | |     |             | |" },
+	{ "+-+-+ +-+-+-+-+ +-+-+ +-+-+ +-+-+ +-+ + +" },
+	{ "|   |   |       |   |     | |   |   | | |" },
+	{ "+ + +-+ + +-+-+-+ + +-+ + +-+ + +-+ + + +" },
+	{ "| |     |   |     | |   |   | |     | | |" },
+	{ "+ +-+-+-+-+ + +-+-+ + +-+-+ + +-+-+-+ + +" },
+	{ "|       |   | |   | | |   |   |     |   |" },
+	{ "+-+ +-+-+ +-+ + + + +-+ + +-+ +-+-+ +-+ +" },
+	{ "|   |   |   |   | | |   |   | |     | | |" },
+	{ "+ +-+ + +-+ +-+ + + + +-+-+ + + + +-+ + +" },
+	{ "|   | |   |   | | |   |   | | | | | | | |" },
+	{ "+-+ +-+ + +-+ +-+ + +-+ +-+ +-+ + + + + +" },
+	{ "|   |   |   |   | |   | |       |   |   |" },
+	{ "+ +-+ +-+-+-+-+ + + + + + + + +-+-+-+-+-+" },
+	{ "| |   | |     | | | | |   | |       |   |" },
+	{ "+ + +-+ + +-+ + + + + + +-+ + +-+-+ + +-+" },
+	{ "| | |   |   |     | | | |   |     | |   |" },
+	{ "+ + + + +-+ +-+-+-+-+ +-+ +-+-+-+-+ +-+ +" },
+	{ "| | | |     |   |   | |   |       | |   |" },
+	{ "+ + + +-+-+-+ +-+ + + + + + +-+-+ + + +-+" },
+	{ "|   |       |     |   | |       |   |   |" },
+	{ "+-+ +-+-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+ +" },
+	{ "|   |   | |     |         |       |   | |" },
+	{ "+ +-+ + + + +-+ +-+ +-+-+ + +-+-+ +-+ + +" },
+	{ "| | | |     | |     | |   | |   |   |   |" },
+	{ "+ + + +-+-+-+ +-+-+-+ + +-+ +-+ +-+ + + +" },
+	{ "|   | |   |     |   |   |     | | |   | |" },
+	{ "+ +-+ + +-+ +-+ +-+ +-+-+-+ + + + +-+-+ +" },
+	{ "| |   |     |   |   |   |   | | |     | |" },
+	{ "+ + +-+ +-+-+ +-+ + + + + +-+ + + +-+ + +" },
+	{ "| |         |     |   |     |   |   |  X|" },
+	{ "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+" },
+	};
 	return 0;
 }
 
 /* 	==================================================[ BUG NOTES ]========================================================
-1. Couldn't get maze map to print. Accidentally put number of start.m_rows/start.m_cols in brackets for i and j.
+1. Couldn't get maze map to print. Accidentally put number of rows/cols in brackets for i and j.
 2. Player started in inccoreect position. Changed the starting coordinates to accomodate for the extra number.
 ========================================================================================================================== */
+
+Each class must have at least two member functions.
+Each class must have at least four member variables.
+-------------
+Notes
+-------------
+
+Structured Data Type- Group of variables defined together under one type.
+
+class [ClassName]
+{
+public:
+    [memberVariableType1] [memberVariableName1];
+    [memberVariableType2] [memberVariableName2];
+};     // Remember the semicolon!
+
+public: This defines the access modifier.
+className: This is the name of the data type that you're defining.
+memberVariableType: This is the type for the member variable of ClassName.
+memberVariableName: This is the name of the member variable inside of ClassName.
+
+--------
+
+variableName.memberVariableName.
+
+--------
+Ammo incendiaryAmmo;
+
+// Setting member variables of a class
+incendiaryAmmo.m_distance = 100;
+incendiaryAmmo.m_damage = 10;
+
+// Printing member variables of a class.
+cout << "Ammo distance: " << incendiaryAmmo.m_distance << endl;
+cout << "Ammo damage: " << incendiaryAmmo.m_damage << endl;
+
+#include <iostream>
+
+using namespace std;
+
+class Ammo
+{
+  public:
+    int m_damage;
+    int m_distance;
+};
+
+void main()
+{
+    Ammo incendiary;
+
+
+    incendiary.m_damage = 10;
+    incendiary.m_distance = 100;
+
+    Ammo explosive;
+    explosive.m_damage = 200;
+    explosive.m_distance = 10;
+
+    Ammo frost;
+    frost.m_damage = 50;
+    frost.distance = 50;
+}
+
+-----------
+
+
+The preferred method to passing objects is pass by reference. Here is what it looks like:
+
+void updateAmmoGui(Ammo &one, Ammo &two, Ammo &three)
+{
+    // some code here
+}
+
+If a parameter is not modified (no member variables are changed), 
+then you should use a const reference.
+it means that the variable is not modifiable.
+Makes it so the variable can't be changed inside the function.
+
+----------
+
+A constructor is a function whose name is the name of the class it resides in.
+
+----------
+
+class Line
+{
+public:
+    Point m_start;
+    Point m_end;
+
+    void Print()
+    {
+       m_start.Print();
+       m_stop.Print();
+    }
+
+    void ApplyOffset(float x, float y)
+    {
+       // accessing member variables from inside the function
+       m_start.Offset(x, y);
+       m_end.Offset(x, y);
+    }
+};
+
+class Point
+{
+public:
+    float m_x;
+    float m_y;
+
+    void Print()
+    {
+        cout <<"x: " << m_x << " y: " << m_y << endl;
+    }
+
+    void Offset(float offsetX, float offsetY)
+    {
+        // accessing member variables from inside the function
+        m_x += offsetX;
+        m_y += offsetY;
+    }
+};
+---------
+Classes- A way of easily organizing data
+Member Variable-
+Member Function-
+Struct- 
+*/
