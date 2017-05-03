@@ -257,57 +257,107 @@ public:
 using namespace std;
 
 Game::Game()
+	: m_NumberOfTurns(0)
+	, m_IsOver(false)
+{
+	m_pMaze = new Maze();
+	m_pPlayer = new Player(35, 39, '@');
+	m_pGoal = new Goal(39, 39, 'x');
+}
 
+Game::~Game()
+{
+	if (m_pMaze != nullptr)
+	{
+		delete m_pMaze;
+		m_pMaze = nullptr;
+	}
 
+	if (m_pPlayer != nullptr)
+	{
+		delete m_pPlayer;
+		m_pPlayer = nullptr;
+	}
+}
 
+void Game:Display()
+{
+	m_pMaze->Print(m_pPlayer, m_pGoal);
+	cout << "W A S or D: ";
+}
 
+void Game::Update()
+{
+	int newPlayerX = m_pPlayer->GetPositionX();
+	int newPlayerY = m_pPlayer->GetPositionY();
 
+	switch (_getch())
+	{
+	case 'w':
+	case 'W':
+		newPlayerY = newPlayerY - 1;
+		break;
 
+	case 'a':
+	case 'A':
+		newPlayerX = newPlayerX - 1;
+		break;
 
+	case 's':
+	case 'S':
+		newPlayerY = newPlayerY + 1;
+		break;
 
+	case 'd':
+	case 'D':
+		newPlayerX = newPlayerX + 1;
+		break;
 
+	default:
+		break;
+	}
 
+	int goalX = m_pGoal->GetPositionX();
+	int goalY = m_pGoal->GetPositionY();
 
+	if (newPlayerX == goalX && newPlayerY == goalY)
+	{
+		m_NumberOfTurns++;
+		m_pPlayer->SetPositionX(goalX);
+		m_pPlayer->SetPositionY(goalY);
+		m_pMaze->Print(m_pPlayer, m_pGoal);
+		cout << "YOU BEAT THE MAZE IN " << m_NumberOfTurns << "TURNS!" << endl;
+		m_IsOver = true;
+	}
+	else if (m_pMaze->IsEmptySlot(newPlayerX, newPlayerY))
+	{
+		m_NumberOfTurns++;
+		m_pPlayer->SetPositionX(newPlayerX);
+		m_pMaze->SetPositionY(newPlayerY);
+	}
+}
 
+bool Game::IsOver()
+{
+	return m_IsOver;
+}
 
+// Main.cpp
+#include <iostream>
+#include "Game.h"
 
+using namespace std;
 
+int main()
+{
+	Game game;
 
+	do
+	{
+		game.Display();
+		game.Update();
+	} while (!game.IsOver());
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	system("pause");
+	return 0;
+}
