@@ -1,148 +1,14 @@
 #include <iostream> // Starts the preprocessor command including the contents of iostream
 using namespace std; // This eliminates the need to write std::cout so it can just be cout
-
-
-
-class Maze;
-
-char m_maze[][42]
-int i;
-int j;
-int m_row = 1; 
-int m_col = 1;
-
-void print(char maze[][42])
-int PlayAgain();
-
-
-
-class Player;
-
-char m_PlayerMove = ' ';
-enum m_PlayerDirection {Up, Down, Left, Right};
-PlayerDirection u = Up;
-PlayerDirection d = Down;
-PlayerDirection l = Left;
-PlayerDirection r = Right;
-
-void printMenu()
-void printInvalid()
-
-
-
-
-class Game;
-
-bool m_GameOver = false;
-int m_counter = 0;
-int m_GoldTrophy;
-int m_SilverTrophy;
-
-
-void printVictory()
-void printAchivement()
-
-
-
-
-
-int main()
-
-
-
-
-
-
-// Function for printing the main menu
-void printMenu()
+class Game
 {
-	cout << "=========================================\n"
-		"\t \tMaze Game \n"
-		"=========================================\n"
-		"Solve in as little steps as possible\n\n\n"
+bool m_GameOver = false; // Boolean statement showing that the game is running the loop until the player quits or reaches the goal
+int m_Counter = 0; // Keeps track of the number of steps it takes to get to the goal
+string m_GoldTrophy;
+string m_SilverTrophy;
 
-		"Controls\n"
-		"--------------\n\n"
-		"U = Up \n"
-		"D = Down \n"
-		"L = Left \n"
-		"R = Right \n"
-		"Q = Quit Game (Boo Quitter!)\n\n\n";
-}
-
-// Function for showing the Maze Map
-void print(char maze[][42])
+void GameLogic()
 {
-		for (int i = 0; i < 41; ++i)
-	{
-		for (int j = 0; j < 42; ++j)
-		{
-			cout << maze[i][j];
-		}
-		cout << endl;
-	}
-}
-
-// Function for Player's movement through the maze
-int main()
-{
-
-// Calls bacj to print the main menu
-printMenu();
-
-// 2D Array of Maze map
-char maze[][42] = {
-{ "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+" },
-{ "|@|     |   |   |         |           | |" },
-{ "+ +-+-+ +-+ + + + + +-+-+-+ + + +-+-+ + +" },
-{ "|   |     |   |   |         |   |   | | |" },
-{ "+-+ + + + + +-+-+-+-+-+-+-+-+-+-+-+ + + +" },
-{ "|   | | | | |           |     |       | |" },
-{ "+ +-+ +-+ + + +-+-+-+-+ + +-+ + +-+-+ + +" },
-{ "| |     |   | |     | | | | |   |   |   |" },
-{ "+ + +-+ + +-+ +-+ + + + + + +-+-+ +-+-+-+" },
-{ "|   |   |   |   | |     |             | |" },
-{ "+-+-+ +-+-+-+-+ +-+-+ +-+-+ +-+-+ +-+ + +" },
-{ "|   |   |       |   |     | |   |   | | |" },
-{ "+ + +-+ + +-+-+-+ + +-+ + +-+ + +-+ + + +" },
-{ "| |     |   |     | |   |   | |     | | |" },
-{ "+ +-+-+-+-+ + +-+-+ + +-+-+ + +-+-+-+ + +" },
-{ "|       |   | |   | | |   |   |     |   |" },
-{ "+-+ +-+-+ +-+ + + + +-+ + +-+ +-+-+ +-+ +" },
-{ "|   |   |   |   | | |   |   | |     | | |" },
-{ "+ +-+ + +-+ +-+ + + + +-+-+ + + + +-+ + +" },
-{ "|   | |   |   | | |   |   | | | | | | | |" },
-{ "+-+ +-+ + +-+ +-+ + +-+ +-+ +-+ + + + + +" },
-{ "|   |   |   |   | |   | |       |   |   |" },
-{ "+ +-+ +-+-+-+-+ + + + + + + + +-+-+-+-+-+" },
-{ "| |   | |     | | | | |   | |       |   |" },
-{ "+ + +-+ + +-+ + + + + + +-+ + +-+-+ + +-+" },
-{ "| | |   |   |     | | | |   |     | |   |" },
-{ "+ + + + +-+ +-+-+-+-+ +-+ +-+-+-+-+ +-+ +" },
-{ "| | | |     |   |   | |   |       | |   |" },
-{ "+ + + +-+-+-+ +-+ + + + + + +-+-+ + + +-+" },
-{ "|   |       |     |   | |       |   |   |" },
-{ "+-+ +-+-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+ +" },
-{ "|   |   | |     |         |       |   | |" },
-{ "+ +-+ + + + +-+ +-+ +-+-+ + +-+-+ +-+ + +" },
-{ "| | | |     | |     | |   | |   |   |   |" },
-{ "+ + + +-+-+-+ +-+-+-+ + +-+ +-+ +-+ + + +" },
-{ "|   | |   |     |   |   |     | | |   | |" },
-{ "+ +-+ + +-+ +-+ +-+ +-+-+-+ + + + +-+-+ +" },
-{ "| |   |     |   |   |   |   | | |     | |" },
-{ "+ + +-+ +-+-+ +-+ + + + + +-+ + + +-+ + +" },
-{ "| |         |     |   |     |   |   |  X|" },
-{ "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+" },
-};
-	// Declares where the player's starting position is 
-	int row = 1; 
-	int col = 1;
-
-	// Keeps track of the number of steps it takes to get to the goal
-	int counter = 0;
-
-	// Boolean statement showing that the game is running the loop until the player quits or reaches the goal
-	bool GameOver = false;
 	while(!GameOver)
 	{
 		print(maze); // Calls back to the function and prints the maze map
@@ -225,3 +91,142 @@ char maze[][42] = {
 
 	return 0;
 }
+
+void printAchivement()
+{
+	if (counter < = 100)
+	{
+		cout << "You won the " << m_GoldTrophy << "! You're a maze master!" << endl;
+	}
+	else
+	{
+		cout << "You won the " << m_SilverTrophy << "... Better luck next time." << endl;
+	}
+}
+
+};
+
+
+class Maze
+{
+private:
+
+// 2D Array of Maze map
+char m_maze[][42] = {
+{ "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+" },
+{ "|@|     |   |   |         |           | |" },
+{ "+ +-+-+ +-+ + + + + +-+-+-+ + + +-+-+ + +" },
+{ "|   |     |   |   |         |   |   | | |" },
+{ "+-+ + + + + +-+-+-+-+-+-+-+-+-+-+-+ + + +" },
+{ "|   | | | | |           |     |       | |" },
+{ "+ +-+ +-+ + + +-+-+-+-+ + +-+ + +-+-+ + +" },
+{ "| |     |   | |     | | | | |   |   |   |" },
+{ "+ + +-+ + +-+ +-+ + + + + + +-+-+ +-+-+-+" },
+{ "|   |   |   |   | |     |             | |" },
+{ "+-+-+ +-+-+-+-+ +-+-+ +-+-+ +-+-+ +-+ + +" },
+{ "|   |   |       |   |     | |   |   | | |" },
+{ "+ + +-+ + +-+-+-+ + +-+ + +-+ + +-+ + + +" },
+{ "| |     |   |     | |   |   | |     | | |" },
+{ "+ +-+-+-+-+ + +-+-+ + +-+-+ + +-+-+-+ + +" },
+{ "|       |   | |   | | |   |   |     |   |" },
+{ "+-+ +-+-+ +-+ + + + +-+ + +-+ +-+-+ +-+ +" },
+{ "|   |   |   |   | | |   |   | |     | | |" },
+{ "+ +-+ + +-+ +-+ + + + +-+-+ + + + +-+ + +" },
+{ "|   | |   |   | | |   |   | | | | | | | |" },
+{ "+-+ +-+ + +-+ +-+ + +-+ +-+ +-+ + + + + +" },
+{ "|   |   |   |   | |   | |       |   |   |" },
+{ "+ +-+ +-+-+-+-+ + + + + + + + +-+-+-+-+-+" },
+{ "| |   | |     | | | | |   | |       |   |" },
+{ "+ + +-+ + +-+ + + + + + +-+ + +-+-+ + +-+" },
+{ "| | |   |   |     | | | |   |     | |   |" },
+{ "+ + + + +-+ +-+-+-+-+ +-+ +-+-+-+-+ +-+ +" },
+{ "| | | |     |   |   | |   |       | |   |" },
+{ "+ + + +-+-+-+ +-+ + + + + + +-+-+ + + +-+" },
+{ "|   |       |     |   | |       |   |   |" },
+{ "+-+ +-+-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+ +" },
+{ "|   |   | |     |         |       |   | |" },
+{ "+ +-+ + + + +-+ +-+ +-+-+ + +-+-+ +-+ + +" },
+{ "| | | |     | |     | |   | |   |   |   |" },
+{ "+ + + +-+-+-+ +-+-+-+ + +-+ +-+ +-+ + + +" },
+{ "|   | |   |     |   |   |     | | |   | |" },
+{ "+ +-+ + +-+ +-+ +-+ +-+-+-+ + + + +-+-+ +" },
+{ "| |   |     |   |   |   |   | | |     | |" },
+{ "+ + +-+ +-+-+ +-+ + + + + +-+ + + +-+ + +" },
+{ "| |         |     |   |     |   |   |  X|" },
+{ "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+" },
+};
+int i;
+int j;
+int m_row = 1; // Declares where the player's starting position is 
+int m_col = 1; // Declares where the player's starting position is 
+
+// Function for showing the Maze Map
+void print(char maze[][42])
+{
+		for (int i = 0; i < 41; ++i)
+	{
+		for (int j = 0; j < 42; ++j)
+		{
+			cout << maze[i][j];
+		}
+		cout << endl;
+	}
+}
+
+int PlayAgain()
+{
+	if (m_GameOver = true)
+		{
+			cout << "Would you like to play again?" << endl;
+			cout << "Press 1 for yes and 2 for no." << endl;
+			int m_PlayerChoice;
+			cin >> m_PlayerChoice;
+
+			switch (m_PlayerChoice)
+			case "1": {
+				system ("cls");
+			}
+			case "2":{
+				cout << "Closing Game." << endl;
+				return 0;
+			}
+		}
+}
+};
+
+class Player
+{
+char m_PlayerMove = ' ';
+enum m_PlayerDirection {Up, Down, Left, Right};
+PlayerDirection u = Up;
+PlayerDirection d = Down;
+PlayerDirection l = Left;
+PlayerDirection r = Right;
+
+// Function for printing the main menu
+void printMenu()
+{
+	cout << "=========================================\n"
+		"\t \tMaze Game \n"
+		"=========================================\n"
+		"Solve in as little steps as possible\n\n\n"
+
+		"Controls\n"
+		"--------------\n\n"
+		"U = Up \n"
+		"D = Down \n"
+		"L = Left \n"
+		"R = Right \n"
+		"Q = Quit Game (Boo Quitter!)\n\n\n";
+}
+void printInvalid()
+{
+	cout << "Invalid Input." << endl;
+}
+};
+
+
+
+
+
+	
